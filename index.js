@@ -1,12 +1,13 @@
-const generateHTML = require('./src/generateHTML');
+//const generateHTML = require('./src/generateHTML');
 const fs = require('fs');
 const inquirer = ('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const teamArry = [];
 
 const addManager = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'managerName',
@@ -27,12 +28,24 @@ const addManager = () => {
             name: 'managerOfficeNumber',
             message: "What is the team manager's office number?"
         },
-    ])
-    .then(managerInput => {
-        const { name, id, email, officeNumber } = managerInput;
-        const manager = new Manager (name, id, email, officeNumber);
-    });
+    ]) const { name, id, email, officeNumber } = managerInput;
+            const manager = new Manager(name, id, email, officeNumber);
+        });
 };
+
+const addEmployee = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'role',
+            message: "Which type of team member would you like to add?",
+            choices: ['Engineer', 'Intern', "I don't want to add anymore team members"]
+        },
+    ])
+};
+
+
+
 
 
 
