@@ -1,9 +1,14 @@
 //const generateHTML = require('./src/generateHTML');
 const fs = require('fs');
+
 const inquirer = ('inquirer');
+
 const Manager = require('./lib/Manager');
+
 const Engineer = require('./lib/Engineer');
+
 const Intern = require('./lib/Intern');
+
 const teamArry = [];
 
 const addManager = () => {
@@ -28,10 +33,16 @@ const addManager = () => {
             name: 'managerOfficeNumber',
             message: "What is the team manager's office number?"
         },
-    ]) const { name, id, email, officeNumber } = managerInput;
-            const manager = new Manager(name, id, email, officeNumber);
-        });
+    ])
+        .then(managerInput => {
+            const { managerName, managerId, managerOfficeNumber } = managerInput;
+
+            const manager = new Manager(managerName, managerId, managerOfficeNumber);
+
+            teamArry.manager = teamArry;
+        })
 };
+
 
 const addEmployee = () => {
     return inquirer.prompt([
@@ -46,6 +57,20 @@ const addEmployee = () => {
 
 
 
+
+
+
+
+const writeFile = data => {
+    fs.writeFile('./dist.index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Your team has been created!")
+        }
+    })
+};
 
 
 
