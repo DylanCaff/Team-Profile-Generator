@@ -1,7 +1,7 @@
 //const generateHTML = require('./src/generateHTML');
 const fs = require('fs');
 
-const inquirer = ('inquirer');
+const inquirer = require('inquirer');
 
 const { Manager, managerQuestionsArr } = require('./lib/Manager');
 
@@ -10,6 +10,8 @@ const { Engineer, engineerQuestionsArr } = require('./lib/Engineer');
 const { Intern, internQuestionsArr } = require('./lib/Intern');
 
 const teamArry = [];
+
+const template = require("./src/generateHTML")
 
 
 const init = () => { managerQuestions() }
@@ -25,7 +27,7 @@ const managerQuestions = () => {
 
 const engineerQuestions = () => {
     inquirer.prompt(engineerQuestionsArr)
-        .then((intput) => {
+        .then((input) => {
             input = new Engineer(input.name, input.id, input.email, input.github)
             teamArry.push(input);
             return addEmployee();
@@ -34,8 +36,8 @@ const engineerQuestions = () => {
 
 const internQuestions = () => {
     inquirer.prompt(internQuestionsArr)
-        .then((intput) => {
-            input = new Intern(input.name, input.id, input.email, input.github)
+        .then((input) => {
+            input = new Intern(input.name, input.id, input.email, input.school)
             teamArry.push(input);
             return addEmployee();
         })
@@ -57,24 +59,22 @@ const addEmployee = () => {
     ]).then(input => {
         if (input.role === 'addEngineer') { engineerQuestions(); };
         if (input.role === 'addIntern') { internQuestions(); };
-        if (input.role === 'done') {
-            const writeFile = data => {
-                fs.writeFile('./dist.index.html', data, err => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    } else {
-                        console.log("Your team has been created!")
-                    }
-                })
-            };
-        }
-    })
+        if (input.role === 'done') { writeToFile(teamArry) }
+
+    });
 };
-
-
-
-
+const writeToFile = data => {
+    console.log(data)
+    fs.writeFile('./dist/index.html', template(data), err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log(data)
+            console.log("Your team has been created!")
+        }
+    });
+};
 
 
 init();

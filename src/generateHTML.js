@@ -1,18 +1,93 @@
-const manager = managerInput => {
+const managerCard = data => {
     return `
-    <div id="${managerData.getRole()}-card" class="box card">
+    <div id="${data.name}-card" class="box card">
       <div class="box name-role manager-name">
-        <h2>${managerData.getName()}</h2>
-        <h3>Role: ${managerData.getRole()}</h3>
+        <h1>Manager</h2>
       </div> 
       <div class="box employee-info">
         <ul class="list-group">
-          <li class="list-group-item">ID: ${managerData.getId()}</li>
-          <li class="list-group-item">Email: <a href="mailto:${managerData.getEmail()}">${managerData.getEmail()}</a></li>
-          <li class="list-group-item">Office Number: ${managerData.getOfficeNumber()}</li>
+          <li class="list-group-item">Name: ${data.name}</li>
+          <li class="list-group-item">ID: ${data.id}</li>
+          <li class="list-group-item">Email: <a href="mailto:${data.email}">${data.email}</a></li>
+          <li class="list-group-item">Office Number: ${data.officeNumber}</li>
         </ul>
       </div>
     </div>
   `
 }
+
+const engineerCard = data => {
+  return `
+  <div id="${data.name}-card" class="box card">
+    <div class="box name-role engineer-name">
+      <h1>Engineer</h2>
+    </div> 
+    <div class="box employee-info">
+      <ul class="list-group">
+        <li class="list-group-item">Name: ${data.name}</li>
+        <li class="list-group-item">ID: ${data.id}</li>
+        <li class="list-group-item">Email: <a href="mailto:${data.email}">${data.email}</a></li>
+        <li class="list-group-item">Github: ${data.github}</li>
+      </ul>
+    </div>
+  </div>
+`
+}
+
+const internCard = data => {
+  return `
+  <div id="${data.name}-card" class="box card">
+    <div class="box name-role intern-name">
+      <h1>Intern</h2>
+    </div> 
+    <div class="box employee-info">
+      <ul class="list-group">
+        <li class="list-group-item">Name: ${data.name}</li>
+        <li class="list-group-item">ID: ${data.id}</li>
+        <li class="list-group-item">Email: <a href="mailto:${data.email}">${data.email}</a></li>
+        <li class="list-group-item">School: ${data.school}</li>
+      </ul>
+    </div>
+  </div>
+`
+}
+
+const build = (data) => {
+  const htmlArr = []
+  for(let i = 0; i < data.length; i++) {
+    if(data[i].getRole() == "Manager"){
+      htmlArr.push(managerCard(data[i]))
+    } 
+    if(data[i].getRole() == "Engineer"){
+      htmlArr.push(engineerCard(data[i]))
+    } 
+    if(data[i].getRole() == "Intern"){
+      htmlArr.push(internCard(data[i]))
+    } 
+  }
+
+  const html = htmlArr.join('')
+  return html
+}
+
+
+const template = (data) => {
+  return  `
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>Team</title>
+</head>
+<body>
+  ${build(data)}
+</body>
+</html>
+    `
+}
+
+module.exports = template
 
