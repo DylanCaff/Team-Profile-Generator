@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "version": "^29.5.0"
   },
   "dependencies": {
     "inquirer": "^8.2.4"
