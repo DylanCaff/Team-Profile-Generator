@@ -2,7 +2,7 @@ const managerCard = data => {
     return `
     <div id="${data.name}-card" class="box card">
       <div class="box name-role manager-name">
-        <h1>Manager</h2>
+        <h2>Manager</h2>
       </div> 
       <div class="box employee-info">
         <ul class="list-group">
@@ -20,7 +20,7 @@ const engineerCard = data => {
   return `
   <div id="${data.name}-card" class="box card">
     <div class="box name-role engineer-name">
-      <h1>Engineer</h2>
+      <h2>Engineer</h2>
     </div> 
     <div class="box employee-info">
       <ul class="list-group">
@@ -38,7 +38,7 @@ const internCard = data => {
   return `
   <div id="${data.name}-card" class="box card">
     <div class="box name-role intern-name">
-      <h1>Intern</h2>
+      <h2>Intern</h2>
     </div> 
     <div class="box employee-info">
       <ul class="list-group">
@@ -78,12 +78,17 @@ const template = (data) => {
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
   <link rel="stylesheet" href="style.css" />
   <title>Team</title>
 </head>
 <body>
+<div class="header">
+  <h1>Team Profile<h1>
+  </div>
+  <div class="card-container>
   ${build(data)}
+    </div>
 </body>
 </html>
     `
